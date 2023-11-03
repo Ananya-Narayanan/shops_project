@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+{% extends 'index.html' %}
+{% block content %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div class="card-body">
+                  <h2 class="card-title">Display contact page</h2>
+
+                  <div class="table-responsive pt-3">
+                    <table class="table table-dark">
+                      <thead>
+                        <tr>
+                          <th>
+                            First Name
+                          </th>
+                          <th>
+                            Last Name
+                          </th>
+                          <th>
+                            Email
+                          </th>
+                          <th>
+                            Address
+                          </th>
+                            <th>
+                                City
+                            </th>
+                          <th>
+                            Country
+                          </th>
+                          <th>
+                             message
+                          </th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                      {% for i in data %}
+                        <tr>
+                          <td>
+                            {{i.Firstname}}
+                          </td>
+                          <td>
+                           {{i.Lastname}}
+                          </td>
+                          <td>
+                            {{i.Email}}
+                          </td>
+                          <td>
+                            {{i.Address}}
+                          </td>
+                          <td>
+                           {{i.City}}
+                          </td>
+                          <td>
+                           {{i.Country}}
+                          </td>
+                          <td>
+                            {{i.message}}
+                          </td>
+                          <td>
+<!--                            <form action="{% url 'delete' dataid=i.id %}">-->
+                              <button type="submit" class="btn btn-inverse-danger btn-fw">Delete</button>
+                            </form>
+                          </td>
+                        </tr>
+                      {% endfor %}
+
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+
+</body>
+</html>
+{% endblock %}

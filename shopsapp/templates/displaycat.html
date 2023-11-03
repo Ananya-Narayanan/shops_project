@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+{% extends 'index.html' %}
+{% block content %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div class="card-body">
+                  <h2 class="card-title">DISPLAY CATEGORY</h2>
+
+                  <div class="table-responsive pt-3">
+                    <table class="table table-bordered">
+                      <thead>
+                        <tr>
+                          <th>
+                            Category Name
+                          </th>
+                          <th>
+                            Description
+                          </th>
+                          <th>
+                            Image
+                          </th>
+                          <th>
+                            Options
+                          </th>
+
+
+                        </tr>
+                      </thead>
+                      <tbody>
+                      {% for i in cat %}
+                        <tr class="table-info">
+                          <td>
+                            {{i.CategoryName}}
+                          </td>
+                          <td>
+                             {{i.Description }}
+                          </td>
+                          <td>
+                            <img src="{{i.Image.url}}"width="100px" height="100px">
+                          </td>
+                          <td>
+                            <form action="{% url 'editcat' dataid=i.id %}">
+                               <button type="submit" class="btn btn-outline-dark btn-fw">EDIT</button>
+                            </form>
+                          </td>
+                          <td>
+                            <form action="{% url 'delete_cat' dataid=i.id %}" >
+                                  <button type="submit" class="btn btn-outline-danger btn-fw">Delete</button>
+                            </form>
+                          </td>
+
+                        </tr>
+
+                      {% endfor %}
+
+
+
+
+
+
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+{% if messages %}
+   {% for i in messages %}
+      {% if i.tags == 'warning' %}
+         <script>
+             swal('{{i}}','','warning');
+         </script>
+      {% elif i.tags == 'error' %}
+          <script>
+              swal('{{i}}','','error');
+          </script>
+      {% elif i.tags == 'success' %}
+         <script>
+             swal('{{i}}','','success');
+
+         </script>
+      {% else %}
+         <script>
+             swal('{{i}}','','info');
+         </script>
+      {% endif %}
+   {% endfor %}
+{% endif %}
+
+</body>
+</html>
+{% endblock %}
